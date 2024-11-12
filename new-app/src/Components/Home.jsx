@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AppContext } from "../App";
 
 const Home = () => {
+  const { category, setCategory } = useContext(AppContext);
   const [taskamout, setTaskamout] = useState(0);
   const [taskdone, setTaskdone] = useState(0);
   const [task, setTask] = useState("");
@@ -27,6 +29,7 @@ const Home = () => {
           setTask(e.target.value);
         }}
       />
+
       <button onClick={addTask}>Add Task</button>
       {todoList.map((item, index) => {
         return (

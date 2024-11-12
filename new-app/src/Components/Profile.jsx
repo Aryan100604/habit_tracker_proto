@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../App";
 
 const Profile = () => {
   const [InputName, setInputName] = useState("");
-  const [category, setCategory] = useState([
-    { id: 1, categoryName: "Health", completedTask: 0, totalTask: 0 },
-  ]);
+  const { category, setCategory } = useContext(AppContext);
+
   function AddCategory(name) {
     setCategory([
       ...category,
