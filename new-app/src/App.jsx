@@ -11,8 +11,29 @@ function App() {
   const [category, setCategory] = useState([
     { id: 1, categoryName: "Health", completedTask: 0, totalTask: 0 },
   ]);
+  const [taskamount, setTaskamount] = useState(0);
+  const [taskdone, setTaskdone] = useState(0);
+  const [task, setTask] = useState("");
+
+  const [todoList, setTodoList] = useState([]);
+  const [selectedValue, setSelectedValue] = useState("");
   return (
-    <AppContext.Provider value={{ category, setCategory }}>
+    <AppContext.Provider
+      value={{
+        category,
+        setCategory,
+        taskamount,
+        setTaskamount,
+        taskdone,
+        setTaskdone,
+        task,
+        setTask,
+        todoList,
+        setTodoList,
+        selectedValue,
+        setSelectedValue,
+      }}
+    >
       <Router>
         <div className="App">
           <div className="navbar">
