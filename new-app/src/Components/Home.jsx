@@ -2,12 +2,20 @@ import { useState, useContext } from "react";
 import { AppContext } from "../App";
 
 const Home = () => {
-  const { category, setCategory } = useContext(AppContext);
-  const { task, setTask } = useContext(AppContext);
-  const { taskamount, setTaskamount } = useContext(AppContext);
-  const { taskdone, setTaskdone } = useContext(AppContext);
-  const { todoList, setTodoList } = useContext(AppContext);
-  const { selectedValue, setSelectedValue } = useContext(AppContext);
+  const {
+    category,
+    setCategory,
+    task,
+    setTask,
+    taskamount,
+    setTaskamount,
+    taskdone,
+    setTaskdone,
+    todoList,
+    setTodoList,
+    selectedValue,
+    setSelectedValue,
+  } = useContext(AppContext);
 
   function addTask() {
     setTaskamount(taskamount + 1);

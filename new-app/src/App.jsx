@@ -3,6 +3,7 @@ import Home from "./Components/Home";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Profile from "./Components/Profile";
 import { createContext } from "react";
+import Signup from "./Components/Signup";
 export const AppContext = createContext();
 
 import "./App.css";
@@ -17,6 +18,9 @@ function App() {
 
   const [todoList, setTodoList] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   return (
     <AppContext.Provider
       value={{
@@ -32,6 +36,12 @@ function App() {
         setTodoList,
         selectedValue,
         setSelectedValue,
+        name,
+        setName,
+        password,
+        setPassword,
+        email,
+        setEmail,
       }}
     >
       <Router>
@@ -52,12 +62,18 @@ function App() {
                     <button>Profile</button>
                   </Link>
                 </li>
+                <li>
+                  <Link to="/signup">
+                    <button>SignUp</button>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
+            <Route path="/signup" element={<Signup />}></Route>
           </Routes>
         </div>
       </Router>

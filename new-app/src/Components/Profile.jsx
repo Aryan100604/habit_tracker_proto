@@ -3,7 +3,7 @@ import { AppContext } from "../App";
 
 const Profile = () => {
   const [InputName, setInputName] = useState("");
-  const { category, setCategory } = useContext(AppContext);
+  const { name, email, category, setCategory } = useContext(AppContext);
 
   function AddCategory(name) {
     setCategory([
@@ -18,11 +18,15 @@ const Profile = () => {
   }
   return (
     <div className="Profile">
+      <h3>{`Name: ${name}`}</h3>
+      <h4>{`Email: ${email}`}</h4>
       <input type="text" onChange={(e) => setInputName(e.target.value)} />
       <button onClick={() => AddCategory(InputName)}>Add Category</button>
       {category.map((Category) => {
         return (
-          <h3>{`${Category.id}  ${Category.categoryName}   ${Category.completedTask}/${Category.totalTask}`}</h3>
+          <h3
+            key={Category.id}
+          >{`${Category.id}  ${Category.categoryName}   ${Category.completedTask}/${Category.totalTask}`}</h3>
         );
       })}
     </div>
