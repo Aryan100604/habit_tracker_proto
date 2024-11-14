@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AppContext } from "../App";
-
+import axios from "axios";
 const Home = () => {
   const {
     category,
@@ -16,6 +16,34 @@ const Home = () => {
     selectedValue,
     setSelectedValue,
   } = useContext(AppContext);
+  const [quote, setQuote] = useState("");
+  const [author, setAuthor] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchQuote = async () => {
+      try {
+        const response = await axios.get(
+          "https://api.api-ninjas.com/v1/quotes?category=inspirational",
+          {
+            headers: {
+              "X-Api-Key": "rAdGZU7DaVv61Z4p41cALw==lzwKAGuiRmJXJzzp",
+            },
+          }
+        );
+
+        // Set the quote and author state
+        setQuote(response.data[0].quote);
+        setAuthor(response.data[0].author);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching quote:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchQuote();
+  }, []);
 
   function addTask() {
     setTaskamount(taskamount + 1);
@@ -50,7 +78,9 @@ const Home = () => {
   }
   return (
     <div className="App">
-      <h1>Score of today is {`${taskdone}/${taskamount}`}</h1>
+      <h1 className="today-score">
+        Score of today is {`${taskdone}/${taskamount}`}
+      </h1>
       <input
         type="text"
         onChange={(e) => {
@@ -75,7 +105,8 @@ const Home = () => {
       {todoList.map((item, index) => {
         return (
           <div>
-            <p key={index}>{`${item.task} ${item.selectedValue}`}</p>
+            <h3 key={index}>{`${item.task}`}</h3>
+            <p style={{ color: "red", padding: "5px" }}>{item.selectedValue}</p>
             <button onClick={() => CompleteTask(item, index)}>Completed</button>
             <button onClick={() => NotComplete(item, index)}>
               Not Completed
@@ -83,6 +114,17 @@ const Home = () => {
           </div>
         );
       })}
+      <div className="quotes">
+        <h2>Remember</h2>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <div className="quote-container">
+            <h3>"{quote}"</h3>
+            <p>- {author}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

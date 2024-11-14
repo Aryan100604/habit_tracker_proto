@@ -18,13 +18,15 @@ const Profile = () => {
   }
   return (
     <div className="Profile">
+      <div className="person-info">
       <h3>{`Name: ${name}`}</h3>
       <h4>{`Email: ${email}`}</h4>
+      </div>
       <input type="text" onChange={(e) => setInputName(e.target.value)} />
       <button onClick={() => AddCategory(InputName)}>Add Category</button>
       {category.map((Category) => {
         return (
-          <h3
+          <h3 className="category-items"
             key={Category.id}
           >{`${Category.id}  ${Category.categoryName}   ${Category.completedTask}/${Category.totalTask}`}</h3>
         );

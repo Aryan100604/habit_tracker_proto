@@ -1,0 +1,28 @@
+/* index.css */
+
+/* Reset and box-sizing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Arial", sans-serif;
+  background-image: url("./assets/backimage.jpg"); /* Replace with your dark-themed image path */
+  background-size: cover; /* Ensures the image covers the entire area */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  color: #f0f0f0; /* Light text color for contrast */
+}
+
+.App {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(30, 30, 30, 0.9); /* Dark overlay for readability */
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Darker shadow for depth */
+}
